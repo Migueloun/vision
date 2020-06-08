@@ -9,6 +9,7 @@ coordenadas = encontrar_coordenadas_en_pantalla('me_gusta.png')
 print(coordenadas)
 print(coordenadas[0])
 
+#https://stackoverflow.com/questions/1181464/controlling-mouse-with-python
 def click(x,y):
     win32api.SetCursorPos((x,y))
     win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,x,y,0,0)
