@@ -1,5 +1,6 @@
 import cv2 #Detección de imagenes
 from mss import mss #Para tomar capturas de pantalla con codigo
+import win32api, win32con #Para dar click en con el ratón con windows
 
 #https://stackoverflow.com/questions/2846947/get-screenshot-on-windows-with-python
 def tomar_captura_de_pantalla():
@@ -39,6 +40,19 @@ def encontrar_coordenadas_en_pantalla(imagen_a_encontrar):
     #cv2.imwrite('result.png',screenshot)
     return coordenadas
 
+#https://stackoverflow.com/questions/1181464/controlling-mouse-with-python
+def click(x,y):
+    win32api.SetCursorPos((x,y))
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN,x,y,0,0)
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP,x,y,0,0)
+
+
+def click_en_imagen(imagen, repeticiones):
+    coordenadas = encontrar_coordenadas_en_pantalla(imagen)
+
+    while (repeticiones > 0):
+        click(int(coordenadas[0]), int(coordenadas[1]))
+        repeticiones = repeticiones - 1
     
 
     
